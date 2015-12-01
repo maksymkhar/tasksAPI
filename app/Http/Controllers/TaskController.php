@@ -22,7 +22,7 @@ class TaskController extends Controller
 
         return Response::json([
 
-           'data' => $tasks->toArray()
+           'data' => $this->transform($tasks)
 
         ], 200);
 
@@ -137,5 +137,17 @@ class TaskController extends Controller
         $task->done = $request->done;
 
         $task->save();
+    }
+
+    private function transform($tasks)
+    {
+        return array_map(function($task)
+        {
+            return [
+                'name' => $task['name'],
+                'priority' => $task['priority'],
+                'is_done' => (bool)$task['done']
+            ];
+        }, $tasks->toArray());
     }
 }
