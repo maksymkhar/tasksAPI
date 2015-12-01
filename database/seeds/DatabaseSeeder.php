@@ -49,9 +49,5 @@ class DatabaseSeeder extends Seeder
 
             $tag->save();
         }
-
-
     }
-
-
 }
