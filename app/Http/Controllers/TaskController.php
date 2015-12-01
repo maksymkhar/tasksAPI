@@ -47,7 +47,6 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //Task::create($request);
         $task = new Task();
         $this->saveTask($request, $task);
     }
@@ -78,8 +77,6 @@ class TaskController extends Controller
             'data' => $task->toArray()
 
         ], 200);
-
-        //return Task::findOrFail($id);
     }
 
     /**
@@ -102,7 +99,19 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::find($id);
+
+        if (!$task)
+        {
+            return Response::json([
+
+                'error' => [
+                    'message' => 'Task does not exist'
+                ]
+
+            ], 404);
+        }
+
         $this->saveTask($request, $task);
     }
 
