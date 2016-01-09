@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Response;
 
-class TaskController extends Controller
+class TaskController extends ApiController
 {
     protected $taskTranformer;
 
@@ -28,11 +28,11 @@ class TaskController extends Controller
     {
         $tasks = Task::all();
 
-        return Response::json([
+        return $this->respond([
 
            'data' => $this->taskTransformer->transformCollection($tasks)
 
-        ], 200);
+        ]);
 
         //return Acme::all();
     }
@@ -71,20 +71,14 @@ class TaskController extends Controller
 
         if (!$task)
         {
-            return Response::json([
-
-                'error' => [
-                    'message' => 'Task does not exist'
-                ]
-
-            ], 404);
+            return $this->respondNotFound('Task does not exist');
         }
 
-        return Response::json([
+        return $this->respond([
 
             'data' => $this->taskTransformer->transform($task)
 
-        ], 200);
+        ]);
     }
 
     /**
@@ -111,13 +105,7 @@ class TaskController extends Controller
 
         if (!$task)
         {
-            return Response::json([
-
-                'error' => [
-                    'message' => 'Task does not exist'
-                ]
-
-            ], 404);
+            return $this->respondNotFound('Task does not exist!!');
         }
 
         $this->saveTask($request, $task);
