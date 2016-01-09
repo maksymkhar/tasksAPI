@@ -26,13 +26,11 @@ class TaskController extends Controller
      */
     public function index()
     {
-
-
         $tasks = Task::all();
 
         return Response::json([
 
-           'data' => $this->transformCollection($tasks)
+           'data' => $this->taskTransformer->transformCollection($tasks)
 
         ], 200);
 
@@ -76,7 +74,7 @@ class TaskController extends Controller
             return Response::json([
 
                 'error' => [
-                    'message' => 'Acme does not exist'
+                    'message' => 'Task does not exist'
                 ]
 
             ], 404);
@@ -84,7 +82,7 @@ class TaskController extends Controller
 
         return Response::json([
 
-            'data' => $this->transform($task)
+            'data' => $this->taskTransformer->transform($task)
 
         ], 200);
     }
@@ -148,20 +146,4 @@ class TaskController extends Controller
 
         $task->save();
     }
-
-    private function transformCollection($tasks)
-    {
-        return array_map([$this, 'transform'], $tasks->toArray());
-    }
-
-
-    private function transform($task)
-    {
-        return [
-            'name' => $task['name'],
-            'priority' => $task['priority'],
-            'is_done' => (bool)$task['done']
-        ];
-    }
-
 }
