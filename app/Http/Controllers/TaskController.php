@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Acme\Transformers\TaskTransformer;
 use App\Task;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Response;
 
 class TaskController extends Controller
 {
+    protected $taskTranformer;
+
+    function __construct(TaskTransformer $taskTransformer)
+    {
+        $this->taskTransformer = $taskTransformer;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +26,8 @@ class TaskController extends Controller
      */
     public function index()
     {
+
+
         $tasks = Task::all();
 
         return Response::json([
@@ -26,7 +36,7 @@ class TaskController extends Controller
 
         ], 200);
 
-        //return Task::all();
+        //return Acme::all();
     }
 
     /**
@@ -66,7 +76,7 @@ class TaskController extends Controller
             return Response::json([
 
                 'error' => [
-                    'message' => 'Task does not exist'
+                    'message' => 'Acme does not exist'
                 ]
 
             ], 404);
@@ -144,6 +154,7 @@ class TaskController extends Controller
         return array_map([$this, 'transform'], $tasks->toArray());
     }
 
+
     private function transform($task)
     {
         return [
@@ -152,4 +163,5 @@ class TaskController extends Controller
             'is_done' => (bool)$task['done']
         ];
     }
+
 }
