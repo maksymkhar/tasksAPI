@@ -21,7 +21,6 @@ class TaskController extends ApiController
         $this->middleware('auth.basic', ['only' => 'store']);
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -36,8 +35,6 @@ class TaskController extends ApiController
            'data' => $this->taskTransformer->transformCollection($tasks)
 
         ]);
-
-        //return Acme::all();
     }
 
     /**
@@ -129,18 +126,5 @@ class TaskController extends ApiController
     public function destroy($id)
     {
         Task::destroy($id);
-    }
-
-    /**
-     * @param Request $request
-     * @param $task
-     */
-    public function saveTask(Request $request, $task)
-    {
-        $task->name = $request->name;
-        $task->priority = $request->priority;
-        $task->done = $request->done;
-
-        $task->save();
     }
 }
