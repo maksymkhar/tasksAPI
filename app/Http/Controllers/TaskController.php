@@ -7,6 +7,7 @@ use App\Task;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
 use Response;
 
 class TaskController extends ApiController
@@ -16,6 +17,8 @@ class TaskController extends ApiController
     function __construct(TaskTransformer $taskTransformer)
     {
         $this->taskTransformer = $taskTransformer;
+
+        $this->middleware('auth.basic', ['only' => 'store']);
     }
 
 
@@ -53,10 +56,16 @@ class TaskController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $task = new Task();
-        $this->saveTask($request, $task);
+        if (!Input::get('name') or !Input::get('priority') or !Input::get('done'))
+        {
+            return $this->setStatusCode(422)->respondWithError('Parameters failed validation for a task');
+        }
+
+        Task::create(Input::all());
+
+        return $this->respondCreated('Task successfully created.');
     }
 
     /**

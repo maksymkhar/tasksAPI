@@ -9,15 +9,16 @@
 namespace App\Http\Controllers;
 
 
+
+use Illuminate\Http\Response as IluminateResponse;
 use Response;
 
 class ApiController extends Controller
 {
-
     /**
      * @var int
      */
-    protected $statusCode = 404;
+    protected $statusCode = IluminateResponse::HTTP_NOT_FOUND;
 
     /**
      * @return mixed
@@ -43,7 +44,7 @@ class ApiController extends Controller
      */
     public function respondNotFound($message = 'Not found')
     {
-        return $this->setStatusCode(404)->respondWithError($message);
+        return $this->setStatusCode(IluminateResponse::HTTP_NOT_FOUND)->respondWithError($message);
     }
 
     /**
@@ -52,7 +53,7 @@ class ApiController extends Controller
      */
     public function respondInternalError($message = 'Internal error')
     {
-        return $this->setStatusCode(500)->respondWithError($message);
+        return $this->setStatusCode(IluminateResponse::HTTP_INTERNAL_SERVER_ERROR)->respondWithError($message);
     }
 
     /**
@@ -78,6 +79,14 @@ class ApiController extends Controller
                 'status_code' => $this->getStatusCode()
             ]
 
+        ]);
+    }
+
+    public function respondCreated($message)
+    {
+        return $this->setStatusCode(IluminateResponse::HTTP_CREATED)->respond([
+
+            'message' => $message
         ]);
     }
 }

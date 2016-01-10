@@ -2,6 +2,7 @@
 
 use App\Tag;
 use App\Task;
+use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $this->seedTasks($faker);
         $this->seedTags($faker);
+        $this->seedUsers();
 
         Model::reguard();
     }
@@ -49,5 +51,15 @@ class DatabaseSeeder extends Seeder
 
             $tag->save();
         }
+    }
+
+    private function seedUsers()
+    {
+        $user = new User();
+        $user->name = "admin";
+        $user->email = "admin@mail.com";
+        $user->password = bcrypt(env('PASSWORD_ADMIN', 'admin'));
+
+        $user->save();
     }
 }
