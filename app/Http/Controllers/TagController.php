@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Acme\Transformers\TagTransformer;
 use App\Tag;
+use App\Task;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -27,12 +28,13 @@ class TagController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($taskId = null)
     {
         // 1. No es retorna tot: paginació
         //return Tag::all();
 
-        $tags = Tag::all();
+        $tags = $this->getTags($taskId);
+
         return $this->respond($this->tagTranformer->transformCollection($tags))->setStatusCode(200);
     }
 
@@ -122,5 +124,14 @@ class TagController extends ApiController
     public function destroy($id)
     {
         Tag::destroy($id);
+    }
+
+    /**
+     * @param $taskId
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function getTags($taskId)
+    {
+        return $taskId ? Task::findOrFail($taskId)->tags : Tag::all();
     }
 }

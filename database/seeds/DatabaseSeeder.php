@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->seedTasks($faker);
         $this->seedTags($faker);
         $this->seedUsers();
+        $this->seedTaskTag($faker);
 
         Model::reguard();
     }
@@ -61,5 +62,16 @@ class DatabaseSeeder extends Seeder
         $user->password = bcrypt(env('PASSWORD_ADMIN', 'admin'));
 
         $user->save();
+    }
+
+    private function seedTaskTag($faker)
+    {
+        foreach (range(0,50) as $n)
+        {
+            DB::table('task_tag')->insert([
+                'task_id' => $faker->randomDigit,
+                'tag_id' => $faker->randomDigit
+            ]);
+        }
     }
 }

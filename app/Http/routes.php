@@ -15,5 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('task/{id}/tag', 'TagController@index');
+
 Route::resource('task', 'TaskController');
 Route::resource('tag', 'TagController');
+
+//Route::resource('task.tag', 'TaskTagController');
