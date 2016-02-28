@@ -114,4 +114,9 @@ class TasksAPITest extends TestCase
         $this->delete('/task/' . $task->id)->notSeeInDatabase('tasks',$data);
         $this->get('/task')->dontSeeJson($data)->seeStatusCode(200);
     }
+
+    public function testTaskNotFoundErrorCode()
+    {
+        $this->get('/task/500000000')->seeStatusCode(404);
+    }
 }

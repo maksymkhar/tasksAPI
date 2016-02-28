@@ -110,4 +110,9 @@ class TagsAPITest extends TestCase
         $this->delete('/tag/' . $tag->id)->notSeeInDatabase('tags',$data);
         $this->get('/tag')->dontSeeJson($data)->seeStatusCode(200);
     }
+
+    public function testTagNotFoundErrorCode()
+    {
+        $this->get('/tag/500000000')->seeStatusCode(404);
+    }
 }

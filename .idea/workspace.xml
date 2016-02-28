@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e9107e8-5c08-4345-99b7-800a86af7fbf" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/TagController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/TagController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Tag.php" afterPath="$PROJECT_DIR$/app/Tag.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2015_11_24_192038_create_tags_table.php" afterPath="$PROJECT_DIR$/database/migrations/2015_11_24_192038_create_tags_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/TagsAPITest.php" afterPath="$PROJECT_DIR$/tests/TagsAPITest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/TasksAPITest.php" afterPath="$PROJECT_DIR$/tests/TasksAPITest.php" />
     </list>
     <ignored path="tasksAPI.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,28 +28,28 @@
       <file leaf-file-name="TasksAPITest.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/TasksAPITest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-50.625">
-              <caret line="81" column="6" selection-start-line="81" selection-start-column="6" selection-end-line="81" selection-end-column="6" />
+            <state vertical-scroll-proportion="-35.208332">
+              <caret line="119" column="25" selection-start-line="119" selection-start-column="25" selection-end-line="119" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TagsAPITest.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TagsAPITest.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/TagsAPITest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6022099">
-              <caret line="95" column="43" selection-start-line="95" selection-start-column="43" selection-end-line="95" selection-end-column="43" />
+            <state vertical-scroll-proportion="-33.958332">
+              <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="116" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TaskController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TaskController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TaskController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.958334">
-              <caret line="102" column="8" selection-start-line="102" selection-start-column="8" selection-end-line="112" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.61878455">
+              <caret line="94" column="48" selection-start-line="94" selection-start-column="48" selection-end-line="94" selection-end-column="48" />
               <folding>
                 <element signature="e#40#82#0#PHP" expanded="true" />
               </folding>
@@ -125,7 +122,6 @@
         <option value="$PROJECT_DIR$/database/migrations/2015_11_24_192016_create_tasks_table.php" />
         <option value="$PROJECT_DIR$/config/auth.php" />
         <option value="$PROJECT_DIR$/app/Acme/Transformers/TaskTransformer.php" />
-        <option value="$PROJECT_DIR$/tests/TasksAPITest.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TaskController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TagController.php" />
         <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
@@ -133,6 +129,7 @@
         <option value="$PROJECT_DIR$/app/Acme/Transformers/TagTransformer.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_11_24_192038_create_tags_table.php" />
         <option value="$PROJECT_DIR$/tests/TagsAPITest.php" />
+        <option value="$PROJECT_DIR$/tests/TasksAPITest.php" />
       </list>
     </option>
   </component>
@@ -877,28 +874,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TaskController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.958334">
-          <caret line="102" column="8" selection-start-line="102" selection-start-column="8" selection-end-line="112" selection-end-column="22" />
-          <folding>
-            <element signature="e#40#82#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Acme/Transformers/Transformer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2320442">
           <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TasksAPITest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-50.625">
-          <caret line="81" column="6" selection-start-line="81" selection-start-column="6" selection-end-line="81" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -965,9 +944,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/TagsAPITest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6022099">
-          <caret line="95" column="43" selection-start-line="95" selection-start-column="43" selection-end-line="95" selection-end-column="43" />
+        <state vertical-scroll-proportion="-33.958332">
+          <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="116" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/TasksAPITest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-35.208332">
+          <caret line="119" column="25" selection-start-line="119" selection-start-column="25" selection-end-line="119" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TaskController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61878455">
+          <caret line="94" column="48" selection-start-line="94" selection-start-column="48" selection-end-line="94" selection-end-column="48" />
+          <folding>
+            <element signature="e#40#82#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
