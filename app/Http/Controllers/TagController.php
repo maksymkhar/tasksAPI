@@ -2,14 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Acme\Transformers\TagTransformer;
 use App\Tag;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Input;
 
-class TagController extends Controller
+class TagController extends ApiController
 {
+    protected $tagTranformer;
+
+    function __construct(TagTransformer $tagTransformer)
+    {
+        $this->tagTranformer = $tagTransformer;
+
+        // TODO: Post test not working with auth middlerare
+        //$this->middleware('auth.basic', ['only' => 'store']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +30,10 @@ class TagController extends Controller
     public function index()
     {
         // 1. No es retorna tot: paginació
-        return Tag::all();
+        //return Tag::all();
+
+        $tags = Tag::all();
+        return $this->respond($this->tagTranformer->transformCollection($tags))->setStatusCode(200);
     }
 
     /**
@@ -37,10 +52,16 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $tag = new Tag();
-        $this->saveTag($request, $tag);
+        if (!Input::get('title'))
+        {
+            return $this->setStatusCode(422)->respondWithError('Parameters failed validation for a task');
+        }
+
+        Tag::create(Input::all());
+
+        return $this->respondCreated('Tag successfully created.');
     }
 
     /**
@@ -51,8 +72,14 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        return Tag::findOrFail($id);
-        //return Tag::where("id",$id)->first();
+        $tag = Tag::find($id);
+
+        if (!$tag)
+        {
+            return $this->respondNotFound('Tag does not exist');
+        }
+
+        return $this->respond($this->tagTranformer->transform($tag))->setStatusCode(200);
     }
 
     /**
@@ -75,8 +102,15 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tag = Tag::findOrFail($id);
-        $this->saveTag($request, $tag);
+        $tag = Tag::find($id);
+
+        if (!$tag)
+        {
+            return $this->respondNotFound('Tag does not exist!!');
+        }
+
+        $tag->title = $request->title;
+        $tag->save();
     }
 
     /**
@@ -87,16 +121,6 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * @param Request $request
-     * @param $tag
-     */
-    public function saveTag(Request $request, $tag)
-    {
-        $tag->name = $request->name;
-        $tag->save();
+        Tag::destroy($id);
     }
 }

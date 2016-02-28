@@ -46,8 +46,8 @@ class DatabaseSeeder extends Seeder
         foreach (range(0,100) as $number)
         {
             $tag = new Tag();
-            $tag->name = $faker->word;
-            $tag->active = $faker->boolean;
+            $tag->title = $faker->word;
+            //$tag->active = $faker->boolean;
 
             $tag->save();
         }
