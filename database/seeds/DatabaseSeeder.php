@@ -60,6 +60,7 @@ class DatabaseSeeder extends Seeder
         $user->name = "admin";
         $user->email = "admin@mail.com";
         $user->password = bcrypt(env('PASSWORD_ADMIN', 'admin'));
+        $user->api_token = md5(uniqid(rand(), true));
 
         $user->save();
     }

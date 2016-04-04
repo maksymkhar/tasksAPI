@@ -15,9 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('task/{id}/tag', 'TagController@index');
 
-Route::resource('task', 'TaskController');
-Route::resource('tag', 'TagController');
+
+
+// TODO: 'resource' DEPRECATED!
+Route::group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], function () {
+
+    Route::resource('task', 'TaskController');
+    Route::resource('tag', 'TagController');
+    Route::get('task/{id}/tag', 'TagController@index');
+});
+
 
 //Route::resource('task.tag', 'TaskTagController');
