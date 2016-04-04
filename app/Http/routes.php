@@ -19,12 +19,15 @@ Route::get('/', function () {
 
 
 // TODO: 'resource' DEPRECATED!
-Route::group(['prefix' => 'api/v1', 'middleware' => 'auth:api'], function () {
+Route::group(['middleware' => 'auth:api'], function () {
 
     Route::resource('task', 'TaskController');
     Route::resource('tag', 'TagController');
     Route::get('task/{id}/tag', 'TagController@index');
 });
 
+Route::get('/auth/login', function () {
+    return "No authoritzed!!";
+});
 
 //Route::resource('task.tag', 'TaskTagController');

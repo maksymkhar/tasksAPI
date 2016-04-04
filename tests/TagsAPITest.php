@@ -6,6 +6,7 @@ class TagsAPITest extends TestCase
 {
 
     use DatabaseMigrations;
+    use \Illuminate\Foundation\Testing\WithoutMiddleware;
 
     /**
      * A basic functional test example.
@@ -99,7 +100,7 @@ class TagsAPITest extends TestCase
     }
 
     /**
-     * Test tagss can be deleted and not see on database
+     * Test tags can be deleted and not see on database
      *
      * @return void
      */
@@ -115,4 +116,19 @@ class TagsAPITest extends TestCase
     {
         $this->get('/tag/500000000')->seeStatusCode(404);
     }
+
+    /**
+     * Test api
+     * @group security
+     * @return void
+     */
+    public function testApiTokenSecurityNotAuthenticated()
+    {
+        $this->createFakeTags();
+        $this->get('/task')->assertRedirectedTo('/auth/login');
+
+        //$this->get('/api/v1/task')->seeStatusCode(401);
+    }
+
+
 }
