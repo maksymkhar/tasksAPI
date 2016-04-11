@@ -9,6 +9,9 @@ class TasksAPITest extends TestCase
 {
     use DatabaseMigrations;
 
+    // Another way to avoid AUTH, can see other types in TagsAPITest
+    use \Illuminate\Foundation\Testing\WithoutMiddleware;
+
     /**
      * Test tasks is an api then returns JSON
      *
