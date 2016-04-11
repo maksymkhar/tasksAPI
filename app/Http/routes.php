@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 
 // TODO: 'resource' DEPRECATED!
-Route::group(['middleware' => 'auth:api'], function () {
+Route::group(['middleware' => ['auth:api', 'throttle:5,2']], function () {
 
     Route::resource('task', 'TaskController');
     Route::resource('tag', 'TagController');
