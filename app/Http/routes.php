@@ -19,12 +19,17 @@ Route::get('/', function () {
 
 
 // TODO: 'resource' DEPRECATED!
-Route::group(['middleware' => ['auth:api', 'throttle:5,2']], function () {
+//Route::group(['middleware' => ['auth:api', 'throttle:5,2']], function () {
+//
+//    Route::resource('task', 'TaskController');
+//    Route::resource('tag', 'TagController');
+//    Route::get('task/{id}/tag', 'TagController@index');
+//});
 
-    Route::resource('task', 'TaskController');
-    Route::resource('tag', 'TagController');
-    Route::get('task/{id}/tag', 'TagController@index');
-});
+
+
+
+
 
 Route::get('/auth/login', function () {
     return "No authoritzed!!";
